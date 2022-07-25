@@ -10,19 +10,20 @@ function App() {
   const [books , setBooks] =useState([]);
   const [mapOfIdBooks , setMapOfIdBooks] = useState(new Map());
   
-  const creatingMapOfIdBooks =(books) => {
-    const mapping = new Map();
-    books.map(book => mapping.set(book.id, book));
-    return mapping;
-   }
-   useEffect(() => {
-BooksAPI.getAll()
-.then(data => {
-  setBooks(data);
-  setMapOfIdBooks(creatingMapOfIdBooks(data)); 
-})} , []);
+  useEffect(() => {
+    const getAllBooks = async () => {
+      const results = await BooksAPI.getAll();
+      setBooks(results);
+      setMapOfIdBooks(creatingMapOfIdBooks(results)); 
+    };
+    getAllBooks();
+  } , []);
 
-
+const creatingMapOfIdBooks =(books) => {
+  const mapping = new Map();
+  books.map(book => mapping.set(book.id, book));
+  return mapping;
+ }
   const movingBookShelf = (book , to) => {
     const movingBooks = books.map(b => {
 if(b.id === book.id){

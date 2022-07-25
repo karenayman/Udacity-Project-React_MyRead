@@ -4,26 +4,26 @@ import {useDebounce} from 'use-debounce';
 
 export default function QueryUsing(query){
     const [bookSearch ,setBookSearch] = useState([]);
-    const [value] = useDebounce(query,500);
+    const [amount] = useDebounce(query,500);
     useEffect(() => {
         let active =true;
-        if(value){
-          BooksAPI.search(value).then(data => {
+        if(amount){
+          BooksAPI.search(amount).then(data => {
             if(data.error){
                setBookSearch([]);
-            }else{
-              if(active){
+            }else if(active){
                 // console.log(data);
                 setBookSearch(data);
-              }
             }
            })
+          
         }
         return () => {
           active =false ;
           setBookSearch([]);
         }
-      } , [value]);
+        
+      } , [amount]);
 
       return [bookSearch , setBookSearch];
 }
