@@ -24,22 +24,24 @@ const creatingMapOfIdBooks =(books) => {
   books.map(book => mapping.set(book.id, book));
   return mapping;
  }
-  const movingBookShelf = (book , to) => {
-    const movingBooks = books.map(b => {
-if(b.id === book.id){
-  book.shelf = to;
-  return book;
-}
-return b;
-    })
-    if(!mapOfIdBooks.has(book.id)){
+ 
+  const movingBookShelf = (book, to) => {
+    let foundedbook = false;
+    const movingBooks = books.map((b) => {
+      if (b.id === book.id) {
+        book.shelf = to;
+        foundedbook = true;
+        return book;
+      }
+      return b;
+    });
+    if (!mapOfIdBooks.has(book.id) && !foundedbook) {
       book.shelf = to;
       movingBooks.push(book);
     }
     setBooks(movingBooks);
-    BooksAPI.update(book,to);
-  }
-
+    BooksAPI.update(book, to);
+  };
   return (
         <Routes className="app">
           <Route path="/search" element={

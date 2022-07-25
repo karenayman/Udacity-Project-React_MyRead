@@ -22,9 +22,10 @@ const Search =({movingBookShelf , mapOfIdBooks}) => {
         setCombinedBook(compineBook);
       } ,[bookSearch]);
 return (
+  
 <div className="search-books">
  <div className="search-books-bar">
-   <Link to="/"  className="close-search" onClick={() => window.reload()}>Close</Link>
+   <Link to="/"  className="close-search" >Close</Link>
    <div className="search-books-input-wrapper">
      <input
        type="text"
