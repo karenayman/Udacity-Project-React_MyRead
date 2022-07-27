@@ -4,6 +4,7 @@ import MainPageHome from "./components/MainPageHome";
 import * as BooksAPI from "./BooksAPI";
 import { Route, Routes } from "react-router-dom";
 import Search from "./components/Search";
+import PageNotFound from "./components/PageNotFound";
 
 
 function App() { 
@@ -51,6 +52,7 @@ const creatingMapOfIdBooks =(books) => {
          <Route exact path="/" element={
           <MainPageHome books={books} movingBookShelf={movingBookShelf} />
          }/>
+         <Route path="*" element={<PageNotFound />} />
       </Routes>
   );
 }
