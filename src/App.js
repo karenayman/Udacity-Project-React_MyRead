@@ -15,6 +15,7 @@ function App() {
     const getAllBooks = async () => {
       const results = await BooksAPI.getAll();
       setBooks(results);
+      // console.log(results);
       setMapOfIdBooks(creatingMapOfIdBooks(results)); 
     };
     getAllBooks();

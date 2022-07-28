@@ -10,7 +10,9 @@ const Search =({movingBookShelf , mapOfIdBooks}) => {
     const [query , setQuery] =useState("");
     const [combinedBook , setCombinedBook] = useState([]);
     const [bookSearch ,setBookSearch] = QueryUsing(query);
-
+    // const cover = bookSearch.filter((book) => book.imageLinks )
+    // const allowAnonLogging = bookSearch.allowAnonLogging;
+// console.log(bookSearch);
     useEffect(() => {
         const compineBook = bookSearch.map(book =>{
           if(mapOfIdBooks.has(book.id)){
@@ -21,6 +23,7 @@ const Search =({movingBookShelf , mapOfIdBooks}) => {
         })
         setCombinedBook(compineBook);
       } ,[bookSearch]);
+  // console.log(bookSearch);
 return (
   
 <div className="search-books">
@@ -36,14 +39,17 @@ return (
    </div>
  </div>
  <div className="search-books-results">
-   <ol className="books-grid">
+  <ol className="books-grid">
    {combinedBook.map(book => (
+book.authors && book.imageLinks &&
    <li key={book.id} >
-    <Book book={book} changeShelf={movingBookShelf} />
-   </li>
-   ))}
+   <Book book={book} changeShelf={movingBookShelf} />
+  </li> 
+))}
    </ol>
- </div>
+ 
+ </div> 
+ 
 </div>
 )
 }

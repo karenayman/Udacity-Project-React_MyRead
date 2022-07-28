@@ -10,7 +10,7 @@ body,
 .app {
   background: white;
 }
-
+.hide-book {display: none;}
 /* main page */
 
 .list-books-title {

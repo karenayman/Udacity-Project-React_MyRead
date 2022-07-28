@@ -6,9 +6,13 @@ export default function QueryUsing(query){
     const [bookSearch ,setBookSearch] = useState([]);
     const [amount] = useDebounce(query,500);
     useEffect(() => {
-        let active =true;
+        let active =true;        
         if(amount){
+          // console.log(amount);
           BooksAPI.search(amount).then(data => {
+            // console.log(data);
+
+            // console.log(bookSearch);
             if(data.error){
                setBookSearch([]);
             }else if(active){
@@ -24,6 +28,5 @@ export default function QueryUsing(query){
         }
         
       } , [amount]);
-
       return [bookSearch , setBookSearch];
 }
